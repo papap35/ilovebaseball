@@ -10,8 +10,19 @@ import {
   CartesianGrid,
   Cell,
   LabelList,
+  Rectangle,
+  type BarShapeProps,
 } from "recharts";
 import { TeamSummary } from "@/lib/analytics/summary";
+
+/**
+ * Recharts drops bars with zero width before building their label list, so a team
+ * at exactly 0.0% would lose its label too. A custom shape opts out of that
+ * filtering; the label then renders at the axis with an empty bar behind it.
+ */
+function OddsBar(props: BarShapeProps) {
+  return <Rectangle {...props} />;
+}
 
 export default function PlayoffOddsChart({ teams }: { teams: TeamSummary[] }) {
   const data = [...teams]
@@ -47,7 +58,7 @@ export default function PlayoffOddsChart({ teams }: { teams: TeamSummary[] }) {
             labelFormatter={() => "季後賽晉級機率"}
             contentStyle={{ fontSize: 12, borderRadius: 8 }}
           />
-          <Bar dataKey="pct" radius={[0, 4, 4, 0]} barSize={18}>
+          <Bar dataKey="pct" radius={[0, 4, 4, 0]} barSize={18} shape={OddsBar}>
             {data.map((d) => (
               <Cell key={d.id} fill={d.color} />
             ))}

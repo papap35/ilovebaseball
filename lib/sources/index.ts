@@ -12,3 +12,7 @@ const source: CpblDataSource = createSimulatedSource(SEASON_AS_OF);
 export function getDataSource(): CpblDataSource {
   return source;
 }
+
+export function isDemoData(): boolean {
+  return source.simulated;
+}

@@ -258,6 +258,7 @@ export function createSimulatedSource(asOf: string): CpblDataSource {
   let cached: SeasonSnapshot | null = null;
   return {
     name: "simulated",
+    simulated: true,
     async loadSeason(year: number) {
       if (!cached) cached = buildSnapshot(year, asOf);
       return cached;

@@ -36,8 +36,8 @@ export const TEAMS: Team[] = [
     short: "悍將",
     city: "台北",
     venue: "新莊棒球場",
-    color: "#b91c1c",
-    colorSoft: "#fee2e2",
+    color: "#1d4ed8",
+    colorSoft: "#dbeafe",
   },
   {
     id: "dragons",
@@ -45,8 +45,8 @@ export const TEAMS: Team[] = [
     short: "味全龍",
     city: "台北",
     venue: "天母棒球場",
-    color: "#059669",
-    colorSoft: "#d1fae5",
+    color: "#b91c1c",
+    colorSoft: "#fee2e2",
   },
   {
     id: "hawks",
@@ -54,10 +54,29 @@ export const TEAMS: Team[] = [
     short: "雄鷹",
     city: "高雄",
     venue: "澄清湖棒球場",
-    color: "#2563eb",
-    colorSoft: "#dbeafe",
+    color: "#047857",
+    colorSoft: "#d1fae5",
   },
 ];
+
+/**
+ * Series order for charts, picked by running every permutation through the dataviz
+ * palette validator: the brand colours of several clubs are close, so the order
+ * decides which ones sit next to each other. Kept apart from TEAMS because the
+ * simulated season depends on TEAMS order.
+ */
+export const CHART_ORDER: TeamId[] = [
+  "brothers",
+  "monkeys",
+  "guardians",
+  "lions",
+  "hawks",
+  "dragons",
+];
+
+export const TEAMS_IN_CHART_ORDER: Team[] = CHART_ORDER.map(
+  (id) => TEAMS.find((t) => t.id === id)!
+);
 
 export function getTeam(id: string): Team | undefined {
   return TEAMS.find((t) => t.id === id);

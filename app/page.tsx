@@ -3,7 +3,7 @@ import { getLeagueAnalytics } from "@/lib/analytics";
 import { buildTeamSummaries } from "@/lib/analytics/summary";
 import { TeamRecord } from "@/lib/analytics/standings";
 import { isFinal } from "@/lib/domain/types";
-import { TEAMS, getTeam } from "@/lib/teams";
+import { TEAMS_IN_CHART_ORDER, getTeam } from "@/lib/teams";
 import StandingsTable from "@/components/StandingsTable";
 import RunDiffChart from "@/components/RunDiffChart";
 import EloTrendChart from "@/components/EloTrendChart";
@@ -96,7 +96,7 @@ export default async function DashboardPage() {
         <p className="text-xs text-slate-500 mb-2">
           僅依比賽結果動態更新的戰力評等，和局計 0.5 勝
         </p>
-        <EloTrendChart data={analytics.eloSeries} teams={TEAMS} />
+        <EloTrendChart data={analytics.eloSeries} teams={TEAMS_IN_CHART_ORDER} />
       </section>
 
       <section className="grid gap-6 md:grid-cols-2">
